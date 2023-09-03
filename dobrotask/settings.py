@@ -174,3 +174,6 @@ DJOSER = {
         'user_list': 'users.serializers.UserSerializer'
     }
 }
+
+
+CSRF_TRUSTED_ORIGINS = ['https://*.bounceme.net']
