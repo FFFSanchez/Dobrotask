@@ -15,9 +15,9 @@ urlpatterns = [
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Refs API by Trifonov",
+        title="DobroTasks API by Trifonov",
         default_version='v1',
-        description="Docs for Refs Api App",
+        description="Docs for Tasks Api App",
         contact=openapi.Contact(email="lordsanchez@yandex.ru"),
         license=openapi.License(name="MIT License"),
     ),

@@ -6,10 +6,10 @@ volumes:
 
 services:
   backend:
-    image: lordsanchez/hammer_refs_backend
+    image: lordsanchez/dobrotask_backend
     env_file: .env
     volumes:
-      - static:/app/static_refs_backend
+      - static:/app/static_tasks_backend
     depends_on:
       - pgdb
 
@@ -20,11 +20,11 @@ services:
       - pg_data:/var/lib/postgresql/data
   
   gateway:
-    image: lordsanchez/hammer_refs_gateway
+    image: lordsanchez/dobrotask_gateway
     env_file: .env
     ports:
       - 8000:80
     volumes:
-      - static:/static_refs_nginx
+      - static:/static_tasks_nginx
     depends_on:
       - backend
