@@ -1,13 +1,13 @@
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
-from rest_framework import status
 from django.utils import timezone
-from django.core.exceptions import ValidationError
+from rest_framework import status
 
 
 class MyUserManager(BaseUserManager):
-    def create(self, username, email, password=None, **extra_fields):  # _user
+    def create(self, username, email, password=None, **extra_fields):
 
         if not email:
             raise ValueError('Users must have an email address')
@@ -21,7 +21,7 @@ class MyUserManager(BaseUserManager):
 
     def create_superuser(self, username, email, password):
 
-        user = self.create_user(
+        user = self.create(
             username,
             email,
             password=password

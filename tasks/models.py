@@ -1,4 +1,5 @@
 from django.db import models
+
 from users.models import User
 
 
@@ -16,17 +17,9 @@ class Category(models.Model):
 
 class Task(models.Model):
     class Priority(models.TextChoices):
-        HIGH = "high"  # , ("high")
-        MEDIUM = "mid"  # , ("mid")
-        LOW = "low"  # , ("low")
-    # LOW = 'low'
-    # MID = 'mid'
-    # HIGH = 'high'
-    # PRIORITY_CHOICES = (
-    #     (LOW, 'low'),
-    #     (MID, 'mid'),
-    #     (HIGH, 'high'),
-    # )
+        HIGH = "high"
+        MEDIUM = "mid"
+        LOW = "low"
 
     title = models.CharField('Заголовок задачи', max_length=150)
     description = models.TextField('Описание задачи')
@@ -41,7 +34,7 @@ class Task(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='tasks_to_do',
-        verbose_name='Мои задачи',
+        verbose_name='Исполнитель',
         null=True
     )
     category = models.ForeignKey(
@@ -52,12 +45,10 @@ class Task(models.Model):
         null=True,
     )
     priority = models.CharField(
-        choices=Priority.choices,  # PRIORITY_CHOICES,
+        choices=Priority.choices,
         default='low',
         verbose_name='Приоритет',
-        max_length=10  #max(
-        #     map(len, [priority for priority, _ in PRIORITY_CHOICES])
-        # )
+        max_length=10
     )
 
     is_subtask = models.BooleanField(default=False)
@@ -73,8 +64,12 @@ class Task(models.Model):
     complete_date = models.DateTimeField(
         verbose_name='Дата выполнения',
         null=True,
-        blank=True,
-        # auto_now=True
+        blank=True
+    )
+    spent_time_for_complete = models.IntegerField(
+        verbose_name='Затраченное время',
+        null=True,
+        blank=True
     )
 
     class Meta:
@@ -106,22 +101,3 @@ class TaskSubtask(models.Model):
 
     def __str__(self):
         return f'{self.task} - {self.subtask}'
-
-
-# class Subtask(Task):
-
-#     task = models.ForeignKey(
-#         Task,
-#         on_delete=models.CASCADE,
-#         related_name='subtasks',
-#         verbose_name='Подзадачи'
-#     )
-#     # is_subtask = models.BooleanField(default=True)
-
-#     class Meta:
-#         verbose_name = 'Подзадача'
-#         verbose_name_plural = 'Подзадачи'
-#         ordering = ('id',)
-
-#     def __str__(self):
-#         return self.id
