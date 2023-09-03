@@ -53,7 +53,7 @@ docker compose -f docker-compose.yml up --build -d
 docker compose -f docker-compose.yml exec backend python manage.py makemigrations
 docker compose -f docker-compose.yml exec backend python manage.py migrate
 docker compose -f docker-compose.yml exec backend python manage.py collectstatic
-docker compose -f docker-compose.yml exec backend cp -r /app/collected_static/. /app/static_refs_backend/static/
+docker compose -f docker-compose.yml exec backend cp -r /app/collected_static/. /app/static_tasks_backend/static/
 
 # создать суперюзера если нужен доступ в админку.
 docker compose -f docker-compose.yml exec backend python manage.py createsuperuser
