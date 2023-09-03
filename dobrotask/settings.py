@@ -68,28 +68,12 @@ WSGI_APPLICATION = 'dobrotask.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db3.sqlite3',
-#     }
-# }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('POSTGRES_DB', 'django'),
-#         'USER': os.getenv('POSTGRES_USER', 'django'),
-#         'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
-#         'HOST': os.getenv('DB_HOST', ''),
-#         'PORT': os.getenv('DB_PORT', 5432)
-#     }
-# }
-if DEBUG is True:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db3.sqlite3'
+            'NAME': BASE_DIR / 'db4.sqlite3'
         }
     }
 else:
@@ -157,7 +141,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS':
         "rest_framework.pagination.PageNumberPagination",
-    'PAGE_SIZE': 6
+    'PAGE_SIZE': 6,
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
 
