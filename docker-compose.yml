@@ -19,13 +19,13 @@ services:
         condition: on-failure
         delay: 5s
         max_attempts: 3
-        resources:
-          limits:
-            cpus: '0.60'
-            memory: 70M
-          reservations:
-            cpus: '0.30'
-            memory: 30M
+      resources:
+        limits:
+          cpus: '0.60'
+          memory: 70M
+        reservations:
+          cpus: '0.30'
+          memory: 30M
     depends_on:
       - pgdb
 
